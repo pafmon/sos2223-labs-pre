@@ -1,0 +1,24 @@
+# .github/workflows/deploy.yml
+name: Deploy to Cloud Run
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  deploy:
+    name: Deploy to Cloud Run
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+
+      # Setup gcloud CLI
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "290.0.1"
+          service_account_key: ${{ secrets.GCP_SA_KEY_JSON }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+        
+      - name: Deploy
+        run: gcloud app deploy
