@@ -6,8 +6,13 @@ var port = process.env.PORT || 12345;
 
 app.get("/faces", (request,response) => {
     response.send(cool());
-    console.log("New request");
+    console.log("New /faces request");
 });
+app.get("/resource", (request,response) => {
+    response.json({id:"myId"});
+    console.log("New /resource request");
+});
+
 
 app.listen(port,()=>{
     console.log(`Server ready in port ${port}`);
