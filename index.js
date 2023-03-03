@@ -15,7 +15,7 @@ app.get("/resource", (request,response) => {
 });
 
 app.get("/version", (request,response) => {
-    response.json({version:"1.0"});
+    response.json({version:"1.1"});
     console.log("New /version request");
 });
 
