@@ -1,23 +1,17 @@
-var express = require("express");
-var cool = require("cool-ascii-faces");
+import express  from "express";
+import cors  from "cors";
+import {loadBackend}  from "./src/back/index.js";
+import {handler}  from "./src/front/build/handler.js";
+
 
 var app = express();
+app.use(express.json());
+app.use(cors());
+
 var port = process.env.PORT || 12345;
 
-app.get("/faces", (request,response) => {
-    response.send(cool());
-    console.log("New /faces request");
-});
-
-app.get("/resource", (request,response) => {
-    response.json({id:"myId"});
-    console.log("New /resource request");
-});
-
-app.get("/version", (request,response) => {
-    response.json({version:"1.1"});
-    console.log("New /version request");
-});
+loadBackend(app);
+app.use(handler);
 
 app.listen(port,()=>{
     console.log(`Server ready in port ${port}`);

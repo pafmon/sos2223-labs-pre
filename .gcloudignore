@@ -15,3 +15,13 @@
 
 # Node.js dependencies:
 node_modules/
+src/front/node_modules
+src/front/.svelte-kit
+src/front/.*
+src/front/src
+src/front/static
+src/front/*.json
+src/front/*.md
+src/front/*.js
+
+
