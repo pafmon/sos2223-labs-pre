@@ -1,8 +1,9 @@
 <script>
+// @ts-nocheck
+
     import { onMount } from 'svelte';
     import { dev } from '$app/environment';
 
-    // @ts-nocheck
     let API = '/api/v1/contacts';
     if (dev)
         API = 'http://localhost:12345'+API;
@@ -54,6 +55,25 @@
         resultStatus = status;	
 	}
 
+    async function deleteContact (name) {
+        resultStatus = result = "";
+		const res = await fetch(API+"/"+name, {
+			method: 'DELETE'
+		});
+		try{
+            const data = await res.json();
+            result = JSON.stringify(data,null,2);
+            contacts = data;
+        }catch(error){
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;	
+        if(resultStatus == 200)
+            getContacts();
+	}
+
+
     onMount(async () => {
 		getContacts();
 	});
@@ -77,7 +97,7 @@
         <tr>
             <td><ul>
                 {#each contacts as contact}
-                <li>{contact.name} : {contact.phone}</li>
+                <li><a href="/contacts/{contact.name}">{contact.name}</a> : {contact.phone}  <button type="button" on:click={deleteContact(contact.name)}>Delete</button></li>
                 {/each}
             </ul></td>
         </tr>

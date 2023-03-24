@@ -1,9 +1,10 @@
-<nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/contacts">Contacts</a>
-  </nav>
+<script>
+  import Header  from './Header.svelte';
+  import Footer  from './Footer.svelte';
+</script>
+
+<Header/>
 <hr>
   <slot></slot>
 <hr>
-<p>Made with 🧡 from <a href="https://en.wikipedia.org/wiki/Seville">☀️</a> by @pafmon</p>
+<Footer/>

@@ -19,7 +19,7 @@
     <h1>Contacts</h1>
     <ul>
     {#each $contacts as contact}
-        <li>{contact.name} : {contact.phone}</li>
+        <li><a ref="/contacts/{contact.name}">{contact.name}</a> : {contact.phone}</li>
     {/each}
     </ul>
 </main>
