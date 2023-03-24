@@ -3,6 +3,7 @@
 
     import { onMount } from 'svelte';
     import { dev } from '$app/environment';
+    import { ListGroup, ListGroupItem,Button } from 'sveltestrap';
 
     let API = '/api/v1/contacts';
     if (dev)
@@ -94,15 +95,17 @@
             <td><input bind:value={newPhone} /></td>
             <td><button type="button" on:click={insertContact}>Insert</button></td>
         </tr>
-        <tr>
-            <td><ul>
-                {#each contacts as contact}
-                <li><a href="/contacts/{contact.name}">{contact.name}</a> : {contact.phone}  <button type="button" on:click={deleteContact(contact.name)}>Delete</button></li>
-                {/each}
-            </ul></td>
-        </tr>
     </tbody>    
 </table>
+
+<ListGroup>
+    {#each contacts as contact}
+    <ListGroupItem>
+        <a href="/contacts/{contact.name}">{contact.name}</a> : {contact.phone}  <Button outline secondary on:click={deleteContact(contact.name)}>Delete</Button>
+    </ListGroupItem>
+    {/each}
+</ListGroup>
+
 <button type="button" on:click={getContacts}>Refresh</button>
 
 
