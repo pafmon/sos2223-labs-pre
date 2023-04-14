@@ -43,6 +43,24 @@ function loadBackend(app){
         response.json({version: process.env.npm_package_version });
         console.log("New /api/v1/version request");
     });
+
+    app.get("/api/v1/data", (request,response) => {
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+        }
+
+        function r(){ return getRandomInt(1,10)}
+
+        response.json([ {n:"a",v:r()},
+                        {n:"a",v:r()},
+                        {n:"b",v:r()},
+                        {n:"b",v:r()},
+                        {n:"c",v:r()}
+                        ]);
+        console.log("New /api/v1/data request");
+    });
 }
 
 
