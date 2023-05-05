@@ -1,3 +1,7 @@
+<svelte:head>
+   <title>Contacts List</title>
+</svelte:head>
+
 <script>
 // @ts-nocheck
 
@@ -91,22 +95,22 @@
     </thead>
     <tbody>
         <tr>
-            <td><input bind:value={newName} /></td>
-            <td><input bind:value={newPhone} /></td>
-            <td><button type="button" on:click={insertContact}>Insert</button></td>
+            <td><input id="newName" bind:value={newName} /></td>
+            <td><input id="newName" bind:value={newPhone} /></td>
+            <td><button id="insertContact" type="button" on:click={insertContact}>Insert</button></td>
         </tr>
     </tbody>    
 </table>
 
 <ListGroup>
     {#each contacts as contact}
-    <ListGroupItem>
-        <a href="/contacts/{contact.name}">{contact.name}</a> : {contact.phone}  <Button outline secondary on:click={deleteContact(contact.name)}>Delete</Button>
+    <ListGroupItem class="contactItem">
+        * <a href="/contacts/{contact.name}">{contact.name}</a> : {contact.phone}  <Button outline secondary on:click={deleteContact(contact.name)}>Delete</Button>
     </ListGroupItem>
     {/each}
 </ListGroup>
 
-<button type="button" on:click={getContacts}>Refresh</button>
+<button id="getContacts" type="button" on:click={getContacts}>Refresh</button>
 
 
 {#if resultStatus != ""}

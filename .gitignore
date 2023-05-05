@@ -104,3 +104,6 @@ dist
 .tern-port
 gc-sa-key.json
 .history*
+/test-results/
+/playwright-report/
+/playwright/.cache/
