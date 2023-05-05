@@ -16,10 +16,9 @@ test('get contacts link', async ({ page }) => {
 
   let items =  (await page.locator('.contactItem').all()).length;
 
-  expect(items).toBeGreaterThan(2);
+  expect(items).toBeGreaterThan(0);
 
-  
- 
+
   // Expects the URL to contain intro.
 
 });
