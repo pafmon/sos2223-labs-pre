@@ -14,6 +14,8 @@ test('get contacts link', async ({ page }) => {
 
   await expect(page).toHaveTitle(/Contacts List/);
 
+  await page.getByRole('button', { name: 'Refresh' }).click();
+
   let items =  (await page.locator('.contactItem').all()).length;
 
   expect(items).toBeGreaterThan(0);
