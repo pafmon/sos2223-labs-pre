@@ -15,15 +15,15 @@ jobs:
         node-version: 16
     - name: Install dependencies
       run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-
-    - run: npm install
 
     - run: cd front; npm install; cd ..
     - run: cd front; npm run build; cd ..
     
     - run: npm start &
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
+
 
     - name: Run Playwright tests
       run: npx playwright test
